@@ -21,7 +21,7 @@ My Minecraft Plugin Utill lib.
   - **This Method is Get the User's Info Data**
  
 - Boolean isUser(String type, String value)
-  - type -> uuid or name  *(need datatype)*
+  - type -> uuid or name  *(Type of 'value')*
   - value -> type's value
   - **This Method to Verify that Value are User**
 
