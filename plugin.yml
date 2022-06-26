@@ -1,0 +1,5 @@
+main : com.github.QCUtilLib.Main
+name : QCUtilLib
+version : 0.0.1
+author : QC
+description : QC Utility Library
