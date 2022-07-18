@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class InfoDatabase {
 
@@ -71,6 +72,40 @@ public class InfoDatabase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return result;
+	}
+	
+	
+	public static String[] getAllUsers()
+	{
+		
+		ArrayList<String> resultList = new ArrayList<String>();
+		
+		try {
+			
+			Connection con = DB_Connection.getConnection();
+			Statement stmt = con.createStatement();
+			
+			stmt.executeUpdate("use userinfo");
+			
+			String selectSQL = "SELECT uuid FROM info";
+			ResultSet rs = stmt.executeQuery(selectSQL);
+			
+			while (rs.next()) {
+				resultList.add(rs.getString("uuid"));
+			}
+			
+			con.close();
+			stmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String[] result = new String[resultList.size()];
+		result = resultList.toArray(result);
 		
 		return result;
 	}

@@ -1,7 +1,9 @@
 package com.github.QCUtilLib.Info;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -34,6 +36,15 @@ public class DB_Connection {
 			stmt = con.createStatement();
 			
 			stmt.executeUpdate("use userinfo");
+			
+			DatabaseMetaData dbm = con.getMetaData();
+			ResultSet tables = dbm.getTables(null, null, "userinfo", null);
+			if (!(tables.next()))
+			{ 
+				con.close();
+				stmt.close();
+				return;
+			}
 			
 			String createTableSQL = "CREATE TABLE info " +
 	                   "(uuid CHAR(36) not NULL, " +
